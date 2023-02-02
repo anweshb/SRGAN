@@ -2,3 +2,4 @@ mirflickr/
 hr_images/
 lr_images/
 .ipynb_checkpoints/
+.DS_Store
