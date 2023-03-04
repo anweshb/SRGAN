@@ -3,3 +3,8 @@ hr_images/
 lr_images/
 .ipynb_checkpoints/
 .DS_Store
+gen_e_1.h5
+gen_e_2.h5
+gen_e_3.h5
+gen_e_4.h5
+gen_e_5.h5
