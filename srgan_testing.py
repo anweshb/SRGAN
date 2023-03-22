@@ -74,6 +74,10 @@ generator = load_model('gen_e_5.h5', compile=False)
 ix = randint(0, len(X1), 1)
 src_image, tar_image = X1[ix], X2[ix]
 
-# generate image from source
+# # generate image from source
 gen_image = generator.predict(src_image)
 
+
+plt.imsave('input.jpeg',src_image[0])
+plt.imsave('target.jpeg', tar_image[0])
+plt.imsave('prediction.jpeg', gen_image)

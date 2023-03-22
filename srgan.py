@@ -190,13 +190,12 @@ def combined_model(generator, discriminator, vgg, lr_ip, hr_ip):
     
     gen_img = generator(lr_ip)
     
-    ## Extracting VGG features of generated image
     gen_features = vgg(gen_img)
-    real_features = vgg(hr_ip)
-    
+
     discriminator.trainable = False
+    validity = discriminator(gen_img)
     
-    return Model(inputs = [lr_ip, hr_ip], outputs = [real_features, gen_features])
+    return Model(inputs=[lr_ip, hr_ip], outputs=[validity, gen_features])
 
 srgan = combined_model(generator, discriminator, vgg, lr_ip, hr_ip)
 
@@ -217,7 +216,7 @@ for batch in range(int(hr_train.shape[0] / batch_size)):
     train_hr_batches.append(hr_train[start_idx : end_idx])
 
 # %%
-epochs = 5
+epochs = 1
 
 for e in range(epochs):
 
@@ -254,7 +253,7 @@ for e in range(epochs):
 
         if (e+1) % 1 == 0: #Change the frequency for model saving, if needed
         #Save the generator after every n epochs (Usually 10 epochs)
-            generator.save("gen_e_"+ str(e+1) +".h5")
+            generator.save("gen_new_e_"+ str(e+1) +".h5")
 
 
 
